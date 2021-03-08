@@ -3,8 +3,7 @@ const bluebird = require("bluebird");
 fetch.Promise = bluebird;
 
 module.exports = async function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
-
+    // context.log('JavaScript HTTP trigger function processed a request.');
     const url = req.body.url;
     var unknown = new URL(url);
     let send = response(context);
