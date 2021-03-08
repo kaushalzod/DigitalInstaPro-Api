@@ -24,6 +24,7 @@ module.exports = async function (context, req) {
     }
     catch (err) {
         context.log(err);
+        send(500, "Internal error hai kuch to bhi");
         throw err;
     }
 }
