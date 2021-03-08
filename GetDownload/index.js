@@ -5,11 +5,12 @@ fetch.Promise = bluebird;
 module.exports = async function (context, req) {
     // context.log('JavaScript HTTP trigger function processed a request.');
     const url = req.body.url;
-    var unknown = new URL(url);
+    var baseUrl= "https://www.instagram.com";
+    // var unknown = new URL(url);
     let send = response(context);
     let data;
     try {
-        data = await fetch(unknown).then(res => res.json());
+        data = await fetch(url).then(res => res.json());
         if (Object.keys(data).length) {
             if (data.graphql.shortcode_media.is_video) {
                 send(200, data.graphql.shortcode_media.video_url);
