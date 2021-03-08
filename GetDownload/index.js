@@ -10,18 +10,28 @@ module.exports = async function (context, req) {
     let send = response(context);
     let data;
     try {
-        data = await fetch(unknown).then(res => res.json());
-        if (Object.keys(data).length) {
-            if (data.graphql.shortcode_media.is_video) {
-                send(200, data.graphql.shortcode_media.video_url);
+        data = await fetch(unknown).then(res => res.json()).then(json => {
+            if(json.graphql.shortcode_media.is_video)
+            {
+                console.log(json.graphql.shortcode_media.video_url);
+                send(200,json.graphql.shortcode_media.video_url);
+                
+            }else{
+                console.log(json.graphql.shortcode_media.display_url);
+                send(200,json.graphql.shortcode_media.display_url);
             }
-            else {
-                send(200, data.graphql.shortcode_media.display_url);
-            }
-        }
-        else {
-            send(400, "Invalid Url or Account is Private");
-        }
+        });;
+        // if (Object.keys(data).length) {
+        //     if (data.graphql.shortcode_media.is_video) {
+        //         send(200, data.graphql.shortcode_media.video_url);
+        //     }
+        //     else {
+        //         send(200, data.graphql.shortcode_media.display_url);
+        //     }
+        // }
+        // else {
+        //     send(400, "Invalid Url or Account is Private");
+        // }
     }
     catch (err) {
         context.log(err);
