@@ -1,17 +1,18 @@
 const fetch = require("node-fetch");
-// const bluebird = require("bluebird");
-// fetch.Promise = bluebird;
+const bluebird = require("bluebird");
+fetch.Promise = bluebird;
 
 module.exports = async function (context, req) {
     // context.log('JavaScript HTTP trigger function processed a request.');
-    const url = req.body.url;
+    const url = context.bindings.req.body.url;
+    // context.log(context.bindings.url.body.url);
     var unknown = new URL(url);
-    context.log(unknown);
+    // context.log(unknown);
     let send = response(context);
     let data;
     try {
         data = await fetch(unknown).then(res => res.json());
-        context.log(data);
+        // context.log(data);
         send(200,data);
         // .then(res => res.json()).then(json => {
         //     if(json.graphql.shortcode_media.is_video)
