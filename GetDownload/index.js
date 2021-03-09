@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
-const bluebird = require("bluebird");
-fetch.Promise = bluebird;
+// const bluebird = require("bluebird");
+// fetch.Promise = bluebird;
 
 module.exports = async function (context, req) {
     // context.log('JavaScript HTTP trigger function processed a request.');
