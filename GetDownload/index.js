@@ -10,9 +10,9 @@ module.exports = async function (context, req) {
     let send = response(context);
     let data;
     try {
-        data = await fetch(unknown).then((res)=>{
-            send(200,res);
-        })
+        data = await fetch(unknown).then(res => res.json());
+        context.log(data);
+        send(200,data);
         // .then(res => res.json()).then(json => {
         //     if(json.graphql.shortcode_media.is_video)
         //     {
