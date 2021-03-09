@@ -4,7 +4,7 @@ fetch.Promise = bluebird;
 
 module.exports = async function (context, req) {
     // context.log('JavaScript HTTP trigger function processed a request.');
-    const url = context.bindings.req.body.url;
+    const url = context.bindings.url.body.url;
     // context.log(context.bindings.url.body.url);
     var unknown = new URL(url);
     // context.log(unknown);
